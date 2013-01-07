@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project
+    name="Headless"
+    default="run"
+    basedir="./"
+    >
+
+    <property file="test.properties"/>
+
+    <target name="run">
+        <exec
+            description="Opens the test capture URL in a headless browser."
+            executable="${bin.headless}"
+            checkreturn="true"
+            logoutput="true"
+            >
+            <arg line="${headless.init} ${test.capture}"/>
+        </exec>
+    </target>
+
+</project>

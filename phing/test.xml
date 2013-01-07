@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project
+    name="Test"
+    default="test"
+    basedir="./"
+    >
+
+    <property file="test.properties"/>
+
+    <target name="test">
+        <exec
+            executable="${bin.test}"
+            dir="${test.suite}"
+            checkreturn="true"
+            logoutput="true"
+            >
+            <arg line="--server ${server.url}"/>
+            <arg line="--reporter ${test.reporter}"/>
+        </exec>
+    </target>
+
+</project>

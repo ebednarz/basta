@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+Convenience tool to open and capture multiple
+browsers instead of the headless WebKit.
+
+This is a sample file for OS X; save it as "browsers.xml"
+and adjust the tasks to your system and target browsers
+(typically you'd want to ignore that file in your VCS).
+
+GNU/Linux differences:
+property task
+- if you use Google Chrome, change "'google chrome'" to "google-chrome"
+exec task
+- change executable from "open" to "${browser}"
+- remove "-a ${browser}" from the arg line.
+-->
+<project
+    description="Sample file for OS X"
+    name="Browsers"
+    default="run"
+    basedir="./"
+    >
+
+    <property
+        name="test.browsers"
+        value="safari,firefox,opera,'google chrome'"
+        />
+
+    <property file="test.properties"/>
+
+    <target name="open">
+        <exec
+            description="Opens a browser and captures it."
+            executable="open"
+            checkreturn="true"
+            logoutput="true"
+            >
+            <arg line="-a ${browser} ${test.capture}"/>
+        </exec>
+        <echo message="Opened ${browser}"/>
+    </target>
+
+    <target
+        name="run"
+        >
+        <foreach
+            list="${test.browsers}"
+            param="browser"
+            target="open"
+            />
+    </target>
+
+</project>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project
+    name="Buster"
+    default="run"
+    basedir="./"
+    >
+
+    <property file="test.properties"/>
+
+    <target name="run">
+        <exec
+            description="Starts the buster server."
+            executable="${bin.server}"
+            checkreturn="true"
+            logoutput="true"
+            >
+            <arg line="--port ${server.port}"/>
+        </exec>
+    </target>
+
+</project>
